@@ -24,7 +24,7 @@ enum PIN {
 };
 
 enum Motors {
-    //% block="left"
+    //% block="Gauche"
     M1 = 1,
     //% block="right"
     M2 = 2,
@@ -33,16 +33,16 @@ enum Motors {
 }
 
 enum Motors1 {
-    //% block="left"
+    //% block="Gauche"
     M1 = 1,
     //% block="right"
     M2 = 2,
 }
 
 enum Dir {
-    //% block="rotate forward"
+    //% block="En Avant"
     CW = 1,
-    //% block="backward"
+    //% block="En arrière"
     CCW = 2
 }
 
@@ -92,19 +92,19 @@ enum PID {
 }
 
 enum Color {
-    //%block="Red"
+    //%block="Rouge"
     RED = 1,
-    //%block="Green"
+    //%block="Vert"
     GREEN = 2,
-    //%block="Blue"
+    //%block="Bleu"
     BLUE = 4,
-    //%block="Yellow"
+    //%block="JAUNE"
     YELLOW = 3,
-    //%block="Violet"
+    //%block="Rose"
     PINK = 5,
     //%block="Cyan"
     CYAN = 6,
-    //%block="White"
+    //%block="Blanc"
     WHITH = 7,
     //%block="OFF"
     OFF = 8
