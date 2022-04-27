@@ -1,7 +1,7 @@
 {
     "name": "MaqueenPlus",
-    "version": "1.5.0",
-    "description": "",
+    "version": "0.0.1",
+    "description": "Maqueen Plus Robot microbit",
     "dependencies": {
         "core": "*",
         "ir": "github:tangjie133/pxt-DFRobot_IR#v0.0.7"
