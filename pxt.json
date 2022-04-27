@@ -1,0 +1,27 @@
+{
+    "name": "MaqueenPlus",
+    "version": "1.5.0",
+    "description": "",
+    "dependencies": {
+        "core": "*",
+        "ir": "github:tangjie133/pxt-DFRobot_IR#v0.0.7"
+    },
+    "files": [
+        "README.md",
+        "maqueenplus.ts",
+        "_locales/fr-fr/MaqueenPlus-strings.json",
+        "_locales/zh-cn/MaqueenPlus-strings.json",
+        "_locales/zh-tw/MaqueenPlus-strings.json"
+    ],
+    "testFiles": [
+        "test.ts"
+    ],
+    "targetVersions": {
+        "target": "4.0.16",
+        "targetId": "microbit"
+    },
+    "supportedTargets": [
+        "microbit"
+    ],
+    "preferredEditor": "tsprj"
+}
