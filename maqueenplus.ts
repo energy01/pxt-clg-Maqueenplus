@@ -1,4 +1,4 @@
-/** 
+﻿/** 
  * @file pxt-DFRobot_Maqueenplus/maqueenplus.ts
  * @brief DFRobot's maqueenplus makecode library.
  * @n [Get the module here](https://www.dfrobot.com/product-2026.html)
@@ -24,25 +24,25 @@ enum PIN {
 };
 
 enum Motors {
-    //% block="Gauche"
+    //% block="gauche"
     M1 = 1,
-    //% block="right"
+    //% block="droit"
     M2 = 2,
-    //% block="ALL"
+    //% block="les 2"
     ALL = 3
 }
 
 enum Motors1 {
-    //% block="Gauche"
+    //% block="gauche"
     M1 = 1,
-    //% block="right"
+    //% block="droit"
     M2 = 2,
 }
 
 enum Dir {
     //% block="En Avant"
     CW = 1,
-    //% block="En arri�re"
+    //% block="En arrière"
     CCW = 2
 }
 
@@ -56,26 +56,26 @@ enum Servos {
 }
 
 enum RGBLight {
-    //%block="RGB_L"
+    //%block="RGB_Gauche"
     RGBL = 1,
-    //%block="RGB_R"
+    //%block="RGB_Droit"
     RGBR = 2,
-    //%block="ALL"
+    //%block="Les 2"
     RGBA = 3
 }
 
 enum Patrol {
-    //% block="L1"
+    //% block="gauche 1"
     L1 = 1,
-    //%block="L2"
+    //%block="gauche 2"
     L2 = 2,
-    //%block="L3"
+    //%block="gauche 3"
     L3 = 5,
-    //%block="R1"
+    //%block="droit 1"
     R1 = 3,
-    //%block="R2"
+    //%block="droit 2"
     R2 = 4,
-    //%block="R3"
+    //%block="droit 3"
     R3 = 6
 }
 
@@ -124,7 +124,7 @@ namespace DFRobotMaqueenPlus {
      *  Init I2C until success
      */
     //% weight=100
-    //%block="initialize via I2C until success"
+    //%block="initialiser l'I2C jusq'au succès"
     export function I2CInit():void{
         let Version_v = 0;
         pins.i2cWriteNumber(0x10, 0x32, NumberFormat.Int8LE);
@@ -157,7 +157,7 @@ namespace DFRobotMaqueenPlus {
      * PID control module
      */
     //% weight=90
-    //%block="PID switch|%pid"
+    //%block="Gestion du PID |%pid"
     export function PID(pid: PID): void {
         let buf = pins.createBuffer(2);
         buf[0] = 0x0A;
@@ -168,7 +168,7 @@ namespace DFRobotMaqueenPlus {
      * Motor control module
      */
     //% weight=80
-    //% block="motor|%index|direction|%direction|speed|%speed "
+    //% block="moteur |%index|direction|%direction|vitesse|%speed "
     //% speed.min=0 speed.max=255
     export function mototRun(index: Motors, direction: Dir, speed: number): void {
         let _speed:number;
@@ -278,7 +278,7 @@ namespace DFRobotMaqueenPlus {
      * Read motor direction(stop:0,forward:1,back:2)
      */
     //% weight=61
-    //%block="Lecture de la direction du moteur|%index (stop:0,avant:1,arriere:2)"
+    //%block="Lecture de la direction du moteur|%index (stop:0,avant:1,arrière:2)"
     export function readDirection(index: Motors1): number {
         pins.i2cWriteNumber(0x10, 0, NumberFormat.Int8LE)
         let dir_x = pins.i2cReadBuffer(0x10, 4)
@@ -349,7 +349,7 @@ namespace DFRobotMaqueenPlus {
      * Read line-tracking sensor status
      */
     //% weight=56
-    //%block="Lecture du cpteur de line |%patrol"
+    //%block="Lecture du capteur détection de ligne |%patrol"
     export function readPatrol(patrol: Patrol): number {
         pins.i2cWriteNumber(0x10, 0x1D, NumberFormat.Int8LE);
         let patrol_y = pins.i2cReadBuffer(0x10, 1);
@@ -370,7 +370,7 @@ namespace DFRobotMaqueenPlus {
      * Read grayscale value of line-tracking sensor
      */
     //% weight=55
-    //% block="read line-tracking sensor|%patrol grayscale "
+    //% block="Lecture du capteur détection de ligne|%patrol (niveau de gris) "
     export function readPatrolVoltage(patrol: Patrol): number {
         pins.i2cWriteNumber(0x10, 0x1E, NumberFormat.Int8LE);
         let patrolv_y = pins.i2cReadBuffer(0x10, 12);
@@ -401,22 +401,22 @@ namespace DFRobotMaqueenPlus {
     /**
      * Get product information
      */
-    //% weight=5
-    //%block="get product information"
-    export function readVersion(): string {
-        pins.i2cWriteNumber(0x10, 0x32, NumberFormat.Int8LE);
-        let Version_v = pins.i2cReadNumber(0x10, NumberFormat.Int8LE);
-        pins.i2cWriteNumber(0x10, 0x33, NumberFormat.Int8LE);
-        let Version_y = pins.i2cReadBuffer(0x10, Version_v);
-        let Version_x = Version_y.toString();
-        return Version_x;
-    }
+    // //% weight=5
+    // //%block="lire la version"
+    // export function readVersion(): string {
+    //     pins.i2cWriteNumber(0x10, 0x32, NumberFormat.Int8LE);
+    //     let Version_v = pins.i2cReadNumber(0x10, NumberFormat.Int8LE);
+    //     pins.i2cWriteNumber(0x10, 0x33, NumberFormat.Int8LE);
+    //     let Version_y = pins.i2cReadBuffer(0x10, Version_v);
+    //     let Version_x = Version_y.toString();
+    //     return Version_x;
+    // }
     /**
      * Read the distance value the ultrasound returns 
      */
     let state1 = 0;
     //% weight=20
-    //%block="read ultrasonic sensor TRIG %T ECHO %E Company:CM"
+    //%block="Distance mesurée par l'ultrason (borne TRIG %T et ECHO %E ) en centimètres"
     export function ultraSonic(T: PIN, E: PIN): number {
         
         let data;
@@ -502,7 +502,7 @@ namespace DFRobotMaqueenPlus {
      * get the revolutions of wheel
      */
     //% weight=60
-    //%block="get the revolutions of wheel %motor"
+    //%block="lire le nombre de tour de roue %motor"
     export function readeDistance(motor:Motors1):string {
         let distance:number;
         pins.i2cWriteNumber(0x10, 4, NumberFormat.Int8LE)
@@ -520,7 +520,7 @@ namespace DFRobotMaqueenPlus {
      * clear the revolutions of wheel 
      */
     //% weight=60
-    //%block="clear the revolutions of wheel %motor" 
+    //%block="Remise a zéro nombre de tour de roue %motor" 
     export function clearDistance(motor:Motors):void{
         
         switch(motor){
