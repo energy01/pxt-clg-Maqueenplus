@@ -202,7 +202,7 @@ namespace DFRobotMaqueenPlus {
      * Motor stop module
      */
     //% weight=75
-    //% block="Motor|%index stop"
+    //% block="Stop le moteur|%index "
     export function mototStop(index: Motors): void {
 
         if (index == 1) {
@@ -234,27 +234,27 @@ namespace DFRobotMaqueenPlus {
     /**
      * Compensate speed difference between two motors
      */
-    // //% weight=7
-    // //% block="motor compensation|%motor speed|%speed"
-    // //% speed.min=0 speed.max=255
-    // export function mostotCompensation(motor: Motors1, speed: number): void {
-    //     let buf = pins.createBuffer(2)
-    //     if (motor == 1) {
-    //         buf[0] = 0x08;
-    //         buf[1] = speed;
-    //         pins.i2cWriteBuffer(0x10, buf)
-    //     } else if (motor == 2) {
-    //         buf[0] = 0x09;
-    //         buf[1] = speed;
-    //         pins.i2cWriteBuffer(0x10, buf)
-    //     }
-    // }
+    //% weight=7
+    //% block="Compensation du moteur |%motor vitesse |%speed"
+    //% speed.min=0 speed.max=255
+    export function mostotCompensation(motor: Motors1, speed: number): void {
+        let buf = pins.createBuffer(2)
+        if (motor == 1) {
+            buf[0] = 0x08;
+            buf[1] = speed;
+            pins.i2cWriteBuffer(0x10, buf)
+        } else if (motor == 2) {
+            buf[0] = 0x09;
+            buf[1] = speed;
+            pins.i2cWriteBuffer(0x10, buf)
+        }
+    }
     
     /**
      * Read motor speed
      */
     //% weight=65
-    //%block="read motor|%index speed"
+    //%block="Lecture vitesse du moteur|%index "
     export function readSpeed(index: Motors1): number {
         let _speed:number,ret = -1;
         pins.i2cWriteNumber(0x10, 0, NumberFormat.Int8LE)
@@ -278,7 +278,7 @@ namespace DFRobotMaqueenPlus {
      * Read motor direction(stop:0,forward:1,back:2)
      */
     //% weight=61
-    //%block="read motor|%index direction(stop:0,forward:1,back:2)"
+    //%block="Lecture de la direction du moteur|%index (stop:0,avant:1,arriere:2)"
     export function readDirection(index: Motors1): number {
         pins.i2cWriteNumber(0x10, 0, NumberFormat.Int8LE)
         let dir_x = pins.i2cReadBuffer(0x10, 4)
@@ -295,7 +295,7 @@ namespace DFRobotMaqueenPlus {
      * Servo control module
      */
     //% weight=40
-    //% block="servo|%index|angle|%angle"
+    //% block="servomoteur|%index|angle|%angle"
     //% angle.min=0  angle.max=180
     export function servoRun(index: Servos, angle: number): void {
         let buf = pins.createBuffer(2)
@@ -322,7 +322,7 @@ namespace DFRobotMaqueenPlus {
      * Control the color of RGB LED 
      */
     //% weight=50
-    //% block="set |%rgbshow color|%color"
+    //% block="Envoyer sur |%rgbshow la couleur|%color"
     export function setRGBLight(rgbshow: RGBLight, color: Color): void {
 
         if (rgbshow == 1) {
@@ -349,7 +349,7 @@ namespace DFRobotMaqueenPlus {
      * Read line-tracking sensor status
      */
     //% weight=56
-    //%block="read line-tracking sensor|%patrol"
+    //%block="Lecture du cpteur de line |%patrol"
     export function readPatrol(patrol: Patrol): number {
         pins.i2cWriteNumber(0x10, 0x1D, NumberFormat.Int8LE);
         let patrol_y = pins.i2cReadBuffer(0x10, 1);
