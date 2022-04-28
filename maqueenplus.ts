@@ -40,9 +40,9 @@ enum Motors1 {
 }
 
 enum Dir {
-    //% block="En Avant"
+    //% block="avant"
     CW = 1,
-    //% block="En arrière"
+    //% block="arrière"
     CCW = 2
 }
 
@@ -56,11 +56,11 @@ enum Servos {
 }
 
 enum RGBLight {
-    //%block="RGB_Gauche"
+    //%block="gauche"
     RGBL = 1,
-    //%block="RGB_Droit"
+    //%block="droite"
     RGBR = 2,
-    //%block="Les 2"
+    //%block="les 2"
     RGBA = 3
 }
 
@@ -124,7 +124,7 @@ namespace DFRobotMaqueenPlus {
      *  Init I2C until success
      */
     //% weight=100
-    //%block="initialiser l'I2C jusq'au succès"
+    //%block="initialiser l'I2C jusqu'au succès"
     export function I2CInit():void{
         let Version_v = 0;
         pins.i2cWriteNumber(0x10, 0x32, NumberFormat.Int8LE);
@@ -168,7 +168,7 @@ namespace DFRobotMaqueenPlus {
      * Motor control module
      */
     //% weight=80
-    //% block="moteur |%index|direction|%direction|vitesse|%speed "
+    //% block="moteur |%index|sens|%direction|vitesse|%speed "
     //% speed.min=0 speed.max=255
     export function mototRun(index: Motors, direction: Dir, speed: number): void {
         let _speed:number;
@@ -234,21 +234,21 @@ namespace DFRobotMaqueenPlus {
     /**
      * Compensate speed difference between two motors
      */
-    //% weight=7
-    //% block="Compensation du moteur |%motor vitesse |%speed"
-    //% speed.min=0 speed.max=255
-    export function mostotCompensation(motor: Motors1, speed: number): void {
-        let buf = pins.createBuffer(2)
-        if (motor == 1) {
-            buf[0] = 0x08;
-            buf[1] = speed;
-            pins.i2cWriteBuffer(0x10, buf)
-        } else if (motor == 2) {
-            buf[0] = 0x09;
-            buf[1] = speed;
-            pins.i2cWriteBuffer(0x10, buf)
-        }
-    }
+    // //% weight=7
+    // //% block="Compensation du moteur |%motor vitesse |%speed"
+    // //% speed.min=0 speed.max=255
+    // export function mostotCompensation(motor: Motors1, speed: number): void {
+    //     let buf = pins.createBuffer(2)
+    //     if (motor == 1) {
+    //         buf[0] = 0x08;
+    //         buf[1] = speed;
+    //         pins.i2cWriteBuffer(0x10, buf)
+    //     } else if (motor == 2) {
+    //         buf[0] = 0x09;
+    //         buf[1] = speed;
+    //         pins.i2cWriteBuffer(0x10, buf)
+    //     }
+    // }
     
     /**
      * Read motor speed
@@ -322,7 +322,7 @@ namespace DFRobotMaqueenPlus {
      * Control the color of RGB LED 
      */
     //% weight=50
-    //% block="Envoyer sur |%rgbshow la couleur|%color"
+    //% block="Envoyer sur la LED RBG |%rgbshow la couleur|%color"
     export function setRGBLight(rgbshow: RGBLight, color: Color): void {
 
         if (rgbshow == 1) {

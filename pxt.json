@@ -1,6 +1,6 @@
 {
     "name": "MaqueenPlus",
-    "version": "0.0.4",
+    "version": "0.0.5",
     "description": "Maqueen Plus Robot microbit",
     "dependencies": {
         "core": "*",
