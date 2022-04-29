@@ -26,7 +26,7 @@ basic.forever(function () {
 ```blocks
 DFRobotMaqueenPlus.I2CInit()
 basic.forever(function () {
-    serial.writeValue("patorl", DFRobotMaqueenPlus.readPatrol(Patrol.L1))
+    serial.writeValue("patrol", DFRobotMaqueenPlus.readPatrol(Patrol.L1))
     serial.writeValue("voltage", DFRobotMaqueenPlus.readPatrolVoltage(Patrol.L1))
 })
 
